@@ -1,0 +1,98 @@
+<div class="login-container" *ngIf="login">
+  <div class="login-content">
+    <mat-toolbar class="login-toolbar" color="primary">Sing In</mat-toolbar>
+    <mat-card>
+      <form [formGroup]="loginForm" #formDirective="ngForm" 
+        (ngSubmit)="onSubmitLogin()" >
+        <div class="input-lines">
+          <mat-form-field>
+            <mat-icon matPrefix>person_outline</mat-icon>
+            <input 
+              autofocus 
+              type="text" 
+              matInput 
+              placeholder="Email" 
+              formControlName="email">
+              <mat-error *ngIf="checkValidationL('email')">
+                Valid email address is required
+              </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-icon matPrefix>lock_outline</mat-icon>
+            <input 
+              type="password" 
+              autocomplete="false" 
+              matInput 
+              placeholder="Password"  
+              formControlName="password">
+              <mat-error *ngIf="checkValidationL('email')">
+                This field is required
+              </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="text-center">
+          <p>Not a member? <a class="active" class="tab-link" (click)="tabRegister()">Register</a></p>
+        </div>
+        <div class="input-button">
+          <button class="button-login" type="submit" mat-raised-button color="primary">LOGIN</button> 
+          <button class="button-login button-color" type="button" mat-raised-button (click)="isLogin()">SIGN UP</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>
+<!-- create account form -->
+<div class="login-container" *ngIf="!login">
+<div class="login-content">
+  <mat-toolbar class="login-toolbar" color="primary">Sign Up</mat-toolbar>
+  <mat-card>
+    <form [formGroup]="registerForm" #formDirective="ngForm" 
+      (ngSubmit)="onSubmitRegister()" >
+      <div class="input-lines">
+        <mat-form-field>
+          <mat-icon matPrefix>email</mat-icon>
+          <input 
+            autofocus 
+            type="email" 
+            matInput 
+            placeholder="Email *" 
+            formControlName="email">
+          <mat-error *ngIf="checkValidation('email')">
+            {{ emailErrors() }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-icon matPrefix>person_outline</mat-icon>
+          <input 
+            autofocus 
+            type="text" 
+            matInput 
+            placeholder="Username *" 
+            formControlName="username">
+          <mat-error *ngIf="checkValidation('username')">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-icon matPrefix>lock_outline</mat-icon>
+          <input 
+            type="password" 
+            autocomplete="false" 
+            matInput 
+            placeholder="Password *" 
+            minlength="6"
+            formControlName="password">
+          <mat-hint>Choose a password of at least six characters</mat-hint>
+      <mat-error *ngIf="checkValidation('password')">
+        This field is required (The password must be at least six characters)
+      </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input-button">
+        <button class="button-login button-color" type="button" mat-raised-button (click)="isLogin()">LOGIN</button>
+        <button class="button-login" type="submit" mat-raised-button color="primary">SIGN UP</button> 
+      </div>
+    </form>
+  </mat-card>
+</div>
+</div>

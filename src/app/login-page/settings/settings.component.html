@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="message-container" *ngIf="message">
+    <span class="message">{{message}}</span>
+  </div>
+<mat-card>
+    <mat-card-title>Account Settings</mat-card-title>
+  <div class="content">
+    <div class="image-part">
+      <div class="image-preview" >
+        <img [src]="imagePreview">
+      </div>
+      <div class="buttons"> 
+        <div>
+          <button [disabled]="!selectedOption" type="button" class="image-button" mat-raised-button (click)="filePicker.click()">Add Image</button>
+          <button [disabled]="!selectedOption" type="button" class="image-button" mat-raised-button (click)="resetProfilePic()">Default image</button>
+          <input 
+          type="file" 
+          #filePicker 
+          (change)="onImagePicked($event)">
+        </div>
+        <!-- <button class="delete-acc" mat-raised-button color="warn" (click)="deleteAccount()">Delete Account</button> -->
+        <ng-container *ngIf="showConfirmationDialog">
+          <div class="confirmation-dialog">
+            <div class="dialog-content">
+              <p>Are you sure you want to delete your account?</p>
+              <div class="dialog-actions">
+                <button mat-raised-button color="primary" (click)="cancelDelete()">Cancel</button>
+                <button mat-raised-button color="warn" (click)="confirmDelete()">Delete</button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <button class="delete-acc" mat-raised-button color="warn" (click)="showConfirmationDialog = true">Delete Account</button>
+      </div>
+    </div>
+    <mat-card-content>
+      <mat-chip-listbox aria-label="Fish selection">
+        <mat-chip-option [selected]="selectedOption" (click)="pickOption()">Basic</mat-chip-option>
+        <mat-chip-option [selected]="!selectedOption" (click)="pickOption()">Password</mat-chip-option>
+      </mat-chip-listbox>
+      <form *ngIf="selectedOption" [formGroup]="settingsForm" (ngSubmit)="saveSettings()">
+        <mat-form-field>
+          <input
+            matInput 
+            formControlName="email" 
+            placeholder="Email" />
+          <mat-error *ngIf="settingsForm.get('email').hasError('email')">
+            Please enter a valid email address.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input 
+            matInput  
+            formControlName="displayName" 
+            placeholder="Display Name" />
+        </mat-form-field>
+        <mat-error *ngIf="settingsForm.invalid">
+          This can't be empty.
+        </mat-error>
+        <button mat-raised-button color="primary" type="submit">Save</button>
+      </form>
+      <form *ngIf="!selectedOption" #f="ngForm" (ngSubmit)="savePassword(f)">
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            name="password"
+            ngModel
+            minlength="6"
+            required
+            placeholder="Password" />
+          <mat-error *ngIf="!f.valid">
+            Password is not long enough.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput 
+            type="password"
+            name="repeatPassword"
+            ngModel
+            minlength="6"
+            required
+            placeholder="Repeat Password" />
+          <mat-error *ngIf="!f.valid">
+            Password is not long enough.
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">Save</button>
+        <mat-error class="error" *ngIf="isError">
+          Passwords must match.
+        </mat-error>
+      </form>
+    </mat-card-content>
+  </div>
+</mat-card>
+</div>

@@ -1,0 +1,38 @@
+<form class="form" *ngIf="user" [formGroup]="commentForm" >
+  <div mat-card-avatar class="comment-avatar">
+    <img class="pfp" [src]="getCreatorPhoto()">
+  </div>
+  <mat-form-field class="comment-input">
+    <textarea
+      matInput
+      class="textarea"
+      rows="1"
+      maxlength="280"
+      formControlName="content"
+      placeholder="Comment..."
+      (input)="resizeTextarea()">
+    </textarea>
+  </mat-form-field>
+  <div class="send-button">
+    <span type="submit" class="material-symbols-outlined" (click)="onSaveComment()">
+      send
+    </span>
+  </div>
+</form>
+
+<form class="form" *ngIf="!user" [formGroup]="commentForm" >
+  <div mat-card-avatar class="comment-avatar">
+    <img>
+  </div>
+  <mat-form-field class="comment-input">
+    <textarea
+      matInput
+      class="textarea"
+      rows="1"
+      maxlength="280"
+      formControlName="content"
+      placeholder="Login to add comment!"
+      (input)="resizeTextarea()">
+    </textarea>
+  </mat-form-field>
+</form>

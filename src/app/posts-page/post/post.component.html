@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="message-container" *ngIf="message">
+    <span class="message">{{message}}</span>
+  </div>
+  <div class="post" *ngFor="let post of posts">
+    <div>
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar class="post-avatar">
+            <img class="pfp" [src]="getCreatorPhoto(post.creator)? getCreatorPhoto(post.creator) : 'assets/pfp.png'" (click)="toUser(post.creator)">
+          </div>
+          <mat-card-title (click)="toUser(post.creator)">{{getCreatorName(post.creator)? getCreatorName(post.creator) : 'Deleted User'}}</mat-card-title>
+          <mat-card-subtitle>Posted on {{ post.postDate | date: 'd MMM y - hh:mm a' }} 
+            <span *ngIf="post.editDate"
+            class="edit-info" 
+            #tooltip="matTooltip"
+            [matTooltip]="post.editDate | date: 'dd/MM/YY - hh:mm a'">
+            (Edited)
+            </span>
+          </mat-card-subtitle>
+          <div class="left-side-header" *ngIf="isAuthShowButton(post.creator)">
+            <span class="material-symbols-outlined menu-button" [matMenuTriggerFor]="menu">menu</span>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="onEdit(post.id)">Edit</button>
+              <button mat-menu-item (click)="onDelete(post.id)">Delete</button>
+            </mat-menu>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- normal content -->
+          <div class="content" *ngIf="!isPostId(post.id)">
+            {{post.content}}
+            <div class="image-post-preview" *ngIf="post.imagePath">
+                <img [src]="post.imagePath" (click)="openImagePopup(post.id)">
+            </div>
+            <div class="image-popup-container" *ngIf="selectedPostId" (click)="closeImagePopup()">
+              <span class="close-button" (click)="closeImagePopup()">&times;</span>
+              <img [src]="getPostImage(selectedPostId)">
+            </div>
+          </div>
+          <!-- edit form -->
+          <div *ngIf="isPostId(post.id)">
+            <form class="form" [formGroup]="editForm" (submit)="onSavePost()" >
+              <mat-form-field class="edit-width">
+                <mat-label>Edit</mat-label>
+                <textarea
+                  matInput
+                  rows="10"
+                  maxlength="400"
+                  formControlName="content">       
+                </textarea>
+                <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && editForm.get('image').valid">
+                  <hr>
+                  <div class="preview-desc">
+                    <img [src]="imagePreview">
+                    <span class="delete-image-button" (click)="deleteEditedImage()">&times;</span>
+                    <div class="image-name" [title]="editForm?.value.image.name">{{editForm?.value.image.name}}</div>
+                  </div>
+                </div>
+              </mat-form-field>
+              <div class="edit-button-group">
+                <button class="button-edit" mat-raised-button type="button" (click)="filePicker.click()">
+                  {{editForm.value.image ? 'Change Image' : 'Add Image'}}
+                </button>
+                <input type="file" #filePicker (change)="onImagePicked($event)"> 
+                <button class="button-edit" mat-raised-button type="submit">Save</button>
+                <button class="button-edit" mat-raised-button type="button" (click)="onCancel()">Cancel</button>
+              </div>
+            </form>
+          </div>
+          <div class="likes-part">
+            <span class="material-symbols-outlined like-button" 
+              [ngClass]="{active: isUserLiked(post.likesArray)}" 
+              (click)="likeButton(post.likes, post.id, post.content, post.creatorName, post.postDate, post.editDate, post.imagePath, post.likesArray )">thumb_up</span>
+            <div 
+              *ngIf="post.likes > 0" 
+              class="likes-number"
+              matTooltip="matTooltip"
+              [matTooltip]="returnLikesList(post.likesArray)"
+              >
+              {{post.likes}}
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-accordion>
+        <mat-expansion-panel [expanded]="post.panelOpenState" (opened)="post.panelOpenState = true"
+                             (closed)="post.panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{post.panelOpenState ? 'Hide' : 'Show'}} Comments
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        <app-comments [postId]="post.id"></app-comments>
+        <app-comment-input [postId]="post.id"></app-comment-input>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+  
+  

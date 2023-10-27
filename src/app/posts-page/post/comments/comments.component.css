@@ -1,0 +1,83 @@
+.comment-avatar{
+  width: 40px;
+  margin-right: 10px;
+  margin-left: -10px;
+  margin-top: 5px;
+
+}
+.pfp {
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+mat-card-title {
+  cursor: pointer;
+}
+.comment-section {
+  display: flex;
+  padding: 10px;
+  width: 95%;
+}
+
+.comment {
+  padding: 5px 12px 20px;
+  background-color: rgb(238, 238, 238);
+  border-radius: 7px;
+  word-wrap: break-word;
+}
+.comment-name{
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.comment-content{
+  font-size: 14px;
+  color: rgb(54, 54, 54);
+}
+.comment-width{
+  width: 80%;
+}
+.under-comment{
+  display: flex;
+  padding: 2px 7px;
+  font-size: 14px;
+  font-weight: bold;
+  justify-content: space-between
+}
+
+.menu-button {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 24;
+  cursor: pointer;
+  color: rgb(126, 126, 126);
+  font-size: 20px;
+  transition: 0.2s;
+}
+.menu-button:hover {
+  color: black;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 600,
+  'GRAD' 0,
+  'opsz' 24;
+}
+.header-comment{
+  display: flex;
+  justify-content: space-between;
+}
+.edit-width{
+  width: 100%;
+  margin-bottom: -20px;
+}
+.textarea {
+  resize: vertical; 
+  min-height: 50px;
+  max-height: 150px;
+}
+.button-edit{
+  margin: 0 5px;
+  margin-bottom: -20px;
+}

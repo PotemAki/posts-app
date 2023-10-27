@@ -1,0 +1,55 @@
+<div *ngFor="let comment of comments">
+  <div class="comment-section" *ngIf="postId === comment.postId">
+    <div mat-card-avatar class="comment-avatar">
+      <img class="pfp" [src]="getCreatorPhoto(comment.commentCreatorName)? getCreatorPhoto(comment.commentCreatorName) : 'assets/pfp.png'" (click)="toUser(comment.commentCreatorName)">
+    </div>
+    <div class="comment-width">
+      <div class="comment">
+        <div class="header-comment"> 
+          <mat-card-title class="comment-name" (click)="toUser(comment.commentCreatorName)">{{getCreatorName(comment.commentCreatorName)? getCreatorName(comment.commentCreatorName) : 'Deleted User'}}</mat-card-title>
+          <div class="menu-comment" *ngIf="isAuthShowButton(comment.commentCreatorName)">
+            <span class="material-symbols-outlined menu-button" [matMenuTriggerFor]="menu">menu</span>
+            <mat-menu #menu="matMenu">
+              <!-- <button mat-menu-item (click)="onEdit(comment.id)">Edit</button> -->
+              <button mat-menu-item (click)="onDelete(comment.id)">Delete</button>
+            </mat-menu>
+          </div>
+        </div>
+        
+        <!-- normal content -->
+        <div class="comment-content" *ngIf="!isPostId(comment.id)">{{comment.commentContent}}</div>
+        <!-- edit content -->
+        <div *ngIf="isPostId(comment.id)">
+          <form class="form" [formGroup]="editCommentForm" (submit)="onSavePost()" >
+            <mat-form-field class="edit-width">
+              <textarea
+                class="textarea"
+                matInput
+                rows="5"
+                maxlength="280"
+                formControlName="content"
+                (input)="resizeTextarea()">       
+              </textarea>
+            </mat-form-field>
+            <div class="edit-button-group">
+              <button class="button-edit" mat-button type="submit">Save</button>
+              <button class="button-edit" mat-button type="button" (click)="onCancel()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="under-comment">
+        <div>{{ comment.commentDate | date: 'd/MM/yy, hh:mm a' }}
+          <span *ngIf="comment.commentEditDate"
+          class="edit-info" 
+          #tooltip="matTooltip"
+          [matTooltip]="comment.commentEditDate | date: 'dd/MM/YY - hh:mm a'">
+          (Edited)
+          </span>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+ 
+</div>

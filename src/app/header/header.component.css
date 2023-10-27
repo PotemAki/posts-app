@@ -1,0 +1,90 @@
+.spacer {
+  flex: 1;
+}
+mat-drawer-container {
+  height: 100%;
+}
+.sidenav{
+  position: fixed;
+  padding: 20px;
+  width: 25%;
+  max-width: 300px;
+  height: 100%;
+}
+.inside-sidenav{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.header-content{
+  position: fixed;
+  z-index: 99999;
+}
+.my-app{
+  cursor: pointer;
+}
+.nav-button{
+  font-size: 16px;
+}
+.nav-button:hover {
+  opacity: 0.9;
+}
+.pfp {
+  width: 100%;
+  border-radius: 50%;
+}
+.status-dot {
+  width: 10px;
+  height: 10px; 
+  border-radius: 50%; 
+  display: inline-block;
+  margin-left: 5px; 
+  background-color: red;
+}
+.active {
+  background-color: green; 
+}
+.member-list{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+}
+.member-name{
+  cursor: pointer;
+  font-weight: bold;
+}
+.sidenav-buttons{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.sidenav-buttons button{
+  margin-bottom: 5px;
+}
+.page{
+  margin-top: 60px;
+}
+
+@media (max-width: 650px) { 
+  .sidenav {
+    width: 35%;
+    padding: 10px
+  }
+}
+@media (max-width: 460px) { 
+  .sidenav {
+    width: 50%;
+    padding: 10px
+  }
+}
+@media (max-width: 290px) { 
+  .sidenav {
+    width: 65%;
+    padding: 5px
+  }
+  .right-header{
+    display: none;
+  }
+}

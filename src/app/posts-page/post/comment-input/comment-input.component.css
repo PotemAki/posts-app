@@ -1,0 +1,55 @@
+.form{
+  display: flex;
+}
+.comment-input{
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
+.textarea {
+  resize: vertical; 
+  min-height: 30px;
+  max-height: 150px;
+}
+.comment-avatar{
+  width: 50px;
+  margin-right: 10px;
+  margin-left: -10px;
+  margin-top: 15px;
+
+}
+.pfp{
+  width: 100%;
+  border-radius: 5px;
+}
+.send-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.material-symbols-outlined{
+  font-variation-settings:
+  'FILL' 10,
+  'wght' 400,
+  'GRAD' 10,
+  'opsz' 24;
+  font-size: 30px;
+  cursor: pointer;
+  color: rgb(114, 114, 114);
+  transition: 0.3s;
+}
+.material-symbols-outlined:hover{
+  color: rgb(77, 77, 77);
+  font-variation-settings:
+  'FILL' 10,
+  'wght' 600,
+  'GRAD' 10,
+  'opsz' 54;
+}
+.material-symbols-outlined:active{
+  color: black;
+  font-size: 35px;
+}

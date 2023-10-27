@@ -1,0 +1,24 @@
+<div class="container">
+<mat-card>
+    <mat-card-title>User View</mat-card-title>
+  <div class="content">
+    <div class="image-part">
+      <div class="image-preview" >
+        <img [src]="imagePreview">
+      </div>
+    </div>
+    <div class="details-content">
+      <div class="details">
+        <div>
+          <mat-card-title>Email</mat-card-title>
+          <button class="details-element" mat-stroked-button>{{user.email}}</button>
+        </div>
+        <div>
+          <mat-card-title>Nickname</mat-card-title>
+          <button class="details-element" mat-stroked-button>{{user.displayName}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>
+</div>

@@ -1,0 +1,56 @@
+<mat-drawer-container class="container" autosize >
+  <mat-drawer #drawer class="sidenav" mode="over" >
+    <div class="inside-sidenav">
+      <p>Check your options!</p>
+      <div>
+        <div class="sidenav-buttons" *ngIf="showFiller">
+          <button class="nav-button" mat-raised-button routerLink="/">Home</button>
+          <button *ngIf="!user" class="nav-button" mat-raised-button (click)="toLogin()">Login</button>
+          <button *ngIf="user" class="nav-button" mat-raised-button (click)="toSettings()">Settings</button>
+          <button *ngIf="user" class="nav-button" mat-raised-button (click)="toLogout()">Logout</button>
+        </div>
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+          Toggle
+        </button>
+      </div>
+    </div>
+    <hr>
+    <p>Members:</p>
+    <div *ngFor="let user of allUsers">
+      <div class="member-list">
+        <div class="member-name" (click)="checkMember(user._id)">{{ user.displayName }}</div>
+        <div class="status-dot" [ngClass]="{ 'active': isUserActive(user._id) }"></div>
+      </div>
+    </div>
+  </mat-drawer>  
+  <mat-toolbar class="header-content" color="primary">
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="my-app" routerLink="/">My App</span>
+    <span class="spacer"></span>
+
+    <button *ngIf="!user" mat-icon-button (click)="toLogin()">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button *ngIf="!user" class="nav-button" mat-button (click)="toLogin()">Login</button>
+
+    <button class="pfp-button" *ngIf="user" mat-icon-button (click)="toSettings()">
+      <img class="pfp" [src]="user.imagePath? user.imagePath : defaultPhoto">
+    </button>
+    
+    <div class="right-header" *ngIf="user">
+      <button class="nav-button" mat-button [matMenuTriggerFor]="menu" >{{user.displayName}}</button>
+      <mat-menu #menu="matMenu">
+        <button class="nav-button" mat-menu-item (click)="toSettings()">Settings</button>
+        <button class="nav-button" mat-menu-item (click)="toLogout()">Logout</button>
+      </mat-menu>
+    </div>
+    
+  </mat-toolbar>
+  <!-- rest of the page -->
+  <div class="page">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>
