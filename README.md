@@ -10,5 +10,7 @@ This is only code. Live version: http://potemaki.s3-website.eu-north-1.amazonaws
 - We got advertisment section at right,
 - Small details: we can like post and then see people who liked it by hovering on it, we can check other users and their profile by navigating sidebar
 - We can edit our account: change nickname, password or profile picture.
-
+  
 - App uses AWE hosting service as github doesnt support backend hosting.
+
+- 6/11/23 update: added dark/light mode 
