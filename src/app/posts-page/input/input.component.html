@@ -1,14 +1,54 @@
-<form class="form" [formGroup]="form" (submit)="onSavePost()">
-  <mat-label *ngIf="!user" class="login-info">Please log in to add a post!</mat-label>
+<form class="form" [formGroup]="form" (submit)="onSavePost()" [ngClass]="{dark: darkMode}">
+  <mat-toolbar class="heading-group" *ngIf="isGroup === 'main'" [ngClass]="{dark3: darkMode}">
+    <div class="heading">
+      <div class="group-title" [ngClass]="{dark3: darkMode}">Public Caffe</div>
+      <div class="group-desc" [ngClass]="{dark4: darkMode}">This space is for everyone.</div>
+    </div>
+  </mat-toolbar>
+  <mat-toolbar class="heading-group" *ngIf="isGroup === 'group1'" [ngClass]="{dark3: darkMode}">
+    <div class="heading">
+      <div class="group-title" [ngClass]="{dark3: darkMode}">Cosmic Group </div>
+      <div class="group-desc" [ngClass]="{dark4: darkMode}">Talks about Space and everything related.</div>
+    </div>
+    <div>
+      <span class="material-symbols-outlined" (click)="goBack()">
+        arrow_back
+        </span>
+    </div>
+  </mat-toolbar>
+  <mat-toolbar class="heading-group" *ngIf="isGroup === 'group2'" [ngClass]="{dark3: darkMode}">
+    <div class="heading">
+      <div class="group-title"  [ngClass]="{dark3: darkMode}">Dog Memes </div>
+      <div class="group-desc" [ngClass]="{dark4: darkMode}">Memes.</div>
+    </div>
+    <div>
+      <span class="material-symbols-outlined" (click)="goBack()">
+        arrow_back
+        </span>
+    </div>
+  </mat-toolbar>
+  <mat-toolbar class="heading-group" *ngIf="isGroup === 'group3'" [ngClass]="{dark3: darkMode}">
+    <div class="heading">
+      <div class="group-title"  [ngClass]="{dark3: darkMode}">Beautiful Views</div>
+      <div class="group-desc" [ngClass]="{dark4: darkMode}">Post pic of nice views!</div>
+    </div>
+    <div>
+      <span class="material-symbols-outlined" (click)="goBack()">
+        arrow_back
+        </span>
+    </div>
+  </mat-toolbar>
   <mat-form-field class="full-width">
     <mat-label>Tell us how you feel!</mat-label>
     <textarea
+      #textarea
       class="textarea"
       maxlength="400"
       matInput
       rows="4"
       formControlName="content"
-      placeholder="Ex. It makes me feel...">
+      placeholder="Ex. It makes me feel..."
+      >
     </textarea>
     <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
       <hr>
@@ -17,13 +57,21 @@
         <div class="image-name">{{form?.value.image.name}}</div>
       </div>
     </div>
+    <mat-card-title>Post in group:</mat-card-title>
+    <mat-chip-listbox aria-label="=selection">
+      <mat-chip-option *ngIf="main" [selected]="isGroup === 'main'" (click)="toMain()">Main Page</mat-chip-option>
+      <mat-chip-option *ngIf="group1" [selected]="isGroup === 'group1'" (click)="toGroup1()">Cosmos Group</mat-chip-option>
+      <mat-chip-option *ngIf="group2" [selected]="isGroup === 'group2'" (click)="toGroup2()">Dog Memes</mat-chip-option>
+      <mat-chip-option *ngIf="group3" [selected]="isGroup === 'group3'" (click)="toGroup3()">Beautiful Views</mat-chip-option>
+    </mat-chip-listbox>
   </mat-form-field>
   <div class="button-group" *ngIf="user">
-    <button type="button" class="post-button" mat-raised-button (click)="filePicker.click()">Add Image</button>
+    <button type="button" class="post-button" mat-raised-button (click)="filePicker.click()" [ngClass]="{dark2: darkMode}">Add Image</button>
     <input type="file" #filePicker (change)="onImagePicked($event)"> 
-    <button type="submit" class="post-button" mat-raised-button [disabled]="!(form.value.content)" >Add post!</button>
-    <button type="button" class="post-button" mat-raised-button (click)="resetForm()">Cancel</button>
+    <button type="submit" class="post-button" mat-raised-button [disabled]="!(form.value.content)" [ngClass]="{dark2: darkMode}">Add post!</button>
+    <button type="button" class="post-button" mat-raised-button (click)="resetForm()" [ngClass]="{dark2: darkMode}">Cancel</button>
   </div>
+  <mat-label *ngIf="!user" class="login-info" [ngClass]="{dark4: darkMode}">Please log in to add a post!</mat-label>
 </form>
 
    

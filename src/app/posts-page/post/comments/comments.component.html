@@ -3,21 +3,21 @@
     <div mat-card-avatar class="comment-avatar">
       <img class="pfp" [src]="getCreatorPhoto(comment.commentCreatorName)? getCreatorPhoto(comment.commentCreatorName) : 'assets/pfp.png'" (click)="toUser(comment.commentCreatorName)">
     </div>
-    <div class="comment-width">
-      <div class="comment">
+    <div class="comment-width" [ngClass]="{dark3: darkMode}">
+      <div class="comment" [ngClass]="{dark: darkMode}">
         <div class="header-comment"> 
           <mat-card-title class="comment-name" (click)="toUser(comment.commentCreatorName)">{{getCreatorName(comment.commentCreatorName)? getCreatorName(comment.commentCreatorName) : 'Deleted User'}}</mat-card-title>
           <div class="menu-comment" *ngIf="isAuthShowButton(comment.commentCreatorName)">
             <span class="material-symbols-outlined menu-button" [matMenuTriggerFor]="menu">menu</span>
-            <mat-menu #menu="matMenu">
+            <mat-menu #menu="matMenu" [class]="custom()">
               <!-- <button mat-menu-item (click)="onEdit(comment.id)">Edit</button> -->
-              <button mat-menu-item (click)="onDelete(comment.id)">Delete</button>
+              <button mat-menu-item (click)="onDelete(comment.id)" [ngClass]="{dark3: darkMode}">Delete</button>
             </mat-menu>
           </div>
         </div>
         
         <!-- normal content -->
-        <div class="comment-content" *ngIf="!isPostId(comment.id)">{{comment.commentContent}}</div>
+        <div class="comment-content" *ngIf="!isPostId(comment.id)" [ngClass]="{dark3: darkMode}">{{comment.commentContent}}</div>
         <!-- edit content -->
         <div *ngIf="isPostId(comment.id)">
           <form class="form" [formGroup]="editCommentForm" (submit)="onSavePost()" >
@@ -49,7 +49,5 @@
         </div>
       </div>
     </div>
- 
   </div>
- 
 </div>

@@ -12,6 +12,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +32,9 @@ import { SettingsComponent } from './login-page/settings/settings.component';
 import { AllUsersComponent } from './login-page/all-users/all-users.component';
 import { ErrorComponent } from './login-page/error/error.component';
 import { ErrorInterceptor } from './login-page/error.interceptor';
+import { SidePartComponent } from './posts-page/side-part/side-part.component';
+import { AddsComponent } from './posts-page/adds/adds.component';
+import { DetailsComponent } from './posts-page/details/details.component';
 
 
 @NgModule({
@@ -45,6 +50,9 @@ import { ErrorInterceptor } from './login-page/error.interceptor';
     SettingsComponent,
     AllUsersComponent,
     ErrorComponent,
+    SidePartComponent,
+    AddsComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +69,8 @@ import { ErrorInterceptor } from './login-page/error.interceptor';
     MatTooltipModule,
     MatChipsModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule

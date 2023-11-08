@@ -1,13 +1,13 @@
 <div class="login-container" *ngIf="login">
   <div class="login-content">
     <mat-toolbar class="login-toolbar" color="primary">Sing In</mat-toolbar>
-    <mat-card>
+    <mat-card [ngClass]="{dark: darkMode}">
       <form [formGroup]="loginForm" #formDirective="ngForm" 
         (ngSubmit)="onSubmitLogin()" >
         <div class="input-lines">
-          <mat-form-field>
+          <mat-form-field [ngClass]="{dark3: darkMode}">
             <mat-icon matPrefix>person_outline</mat-icon>
-            <input 
+            <input
               autofocus 
               type="text" 
               matInput 
@@ -17,7 +17,7 @@
                 Valid email address is required
               </mat-error>
           </mat-form-field>
-          <mat-form-field>
+          <mat-form-field [ngClass]="{dark3: darkMode}">
             <mat-icon matPrefix>lock_outline</mat-icon>
             <input 
               type="password" 
@@ -35,7 +35,7 @@
         </div>
         <div class="input-button">
           <button class="button-login" type="submit" mat-raised-button color="primary">LOGIN</button> 
-          <button class="button-login button-color" type="button" mat-raised-button (click)="isLogin()">SIGN UP</button>
+          <button class="button-login button-color" type="button" mat-raised-button (click)="isLogin()" [ngClass]="{dark2: darkMode}">SIGN UP</button>
         </div>
       </form>
     </mat-card>
@@ -45,11 +45,11 @@
 <div class="login-container" *ngIf="!login">
 <div class="login-content">
   <mat-toolbar class="login-toolbar" color="primary">Sign Up</mat-toolbar>
-  <mat-card>
+  <mat-card [ngClass]="{dark: darkMode}">
     <form [formGroup]="registerForm" #formDirective="ngForm" 
       (ngSubmit)="onSubmitRegister()" >
       <div class="input-lines">
-        <mat-form-field>
+        <mat-form-field [ngClass]="{dark3: darkMode}">
           <mat-icon matPrefix>email</mat-icon>
           <input 
             autofocus 
@@ -61,7 +61,7 @@
             {{ emailErrors() }}
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field [ngClass]="{dark3: darkMode}">
           <mat-icon matPrefix>person_outline</mat-icon>
           <input 
             autofocus 
@@ -73,7 +73,7 @@
             This field is required
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field [ngClass]="{dark3: darkMode}">
           <mat-icon matPrefix>lock_outline</mat-icon>
           <input 
             type="password" 
@@ -82,15 +82,15 @@
             placeholder="Password *" 
             minlength="6"
             formControlName="password">
-          <mat-hint>Choose a password of at least six characters</mat-hint>
+          <mat-hint [ngClass]="{dark4: darkMode}">Choose a password of at least six characters</mat-hint>
       <mat-error *ngIf="checkValidation('password')">
         This field is required (The password must be at least six characters)
       </mat-error>
         </mat-form-field>
       </div>
       <div class="input-button">
-        <button class="button-login button-color" type="button" mat-raised-button (click)="isLogin()">LOGIN</button>
         <button class="button-login" type="submit" mat-raised-button color="primary">SIGN UP</button> 
+        <button class="button-login button-color" type="button" mat-raised-button (click)="isLogin()" [ngClass]="{dark2: darkMode}">LOGIN</button>
       </div>
     </form>
   </mat-card>

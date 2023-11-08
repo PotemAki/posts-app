@@ -1,16 +1,16 @@
-<div class="container">
+<div class="container" [ngClass]="{dark: darkMode}">
   <div class="message-container" *ngIf="message">
     <span class="message">{{message}}</span>
   </div>
-  <div class="post" *ngFor="let post of posts">
-    <div>
-      <mat-card>
+  <div class="post" *ngFor="let post of filteredPosts">
+    <div *ngIf="post.group === isGroup">
+      <mat-card [ngClass]="{dark4: darkMode}">
         <mat-card-header>
           <div mat-card-avatar class="post-avatar">
             <img class="pfp" [src]="getCreatorPhoto(post.creator)? getCreatorPhoto(post.creator) : 'assets/pfp.png'" (click)="toUser(post.creator)">
           </div>
           <mat-card-title (click)="toUser(post.creator)">{{getCreatorName(post.creator)? getCreatorName(post.creator) : 'Deleted User'}}</mat-card-title>
-          <mat-card-subtitle>Posted on {{ post.postDate | date: 'd MMM y - hh:mm a' }} 
+          <mat-card-subtitle [ngClass]="{dark3: darkMode}">Posted on {{ post.postDate | date: 'd MMM y - hh:mm a' }} 
             <span *ngIf="post.editDate"
             class="edit-info" 
             #tooltip="matTooltip"
@@ -20,9 +20,9 @@
           </mat-card-subtitle>
           <div class="left-side-header" *ngIf="isAuthShowButton(post.creator)">
             <span class="material-symbols-outlined menu-button" [matMenuTriggerFor]="menu">menu</span>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="onEdit(post.id)">Edit</button>
-              <button mat-menu-item (click)="onDelete(post.id)">Delete</button>
+            <mat-menu #menu="matMenu" [class]="custom()">
+              <button mat-menu-item (click)="onEdit(post.id)" [ngClass]="{dark5: darkMode}">Edit</button>
+              <button mat-menu-item (click)="onDelete(post.id)" [ngClass]="{dark5: darkMode}">Delete</button>
             </mat-menu>
           </div>
         </mat-card-header>
@@ -54,40 +54,49 @@
                   <div class="preview-desc">
                     <img [src]="imagePreview">
                     <span class="delete-image-button" (click)="deleteEditedImage()">&times;</span>
-                    <div class="image-name" [title]="editForm?.value.image.name">{{editForm?.value.image.name}}</div>
+                    <div class="image-name" [title]="editForm?.value.image.name" [ngClass]="{dark6: darkMode}">{{editForm?.value.image.name}}</div>
                   </div>
                 </div>
               </mat-form-field>
               <div class="edit-button-group">
-                <button class="button-edit" mat-raised-button type="button" (click)="filePicker.click()">
+                <button class="button-edit" mat-raised-button type="button" (click)="filePicker.click()"
+                [ngClass]="{dark7: darkMode}">
                   {{editForm.value.image ? 'Change Image' : 'Add Image'}}
                 </button>
                 <input type="file" #filePicker (change)="onImagePicked($event)"> 
-                <button class="button-edit" mat-raised-button type="submit">Save</button>
-                <button class="button-edit" mat-raised-button type="button" (click)="onCancel()">Cancel</button>
+                <button class="button-edit" mat-raised-button type="submit" [ngClass]="{dark7: darkMode}">Save</button>
+                <button class="button-edit" mat-raised-button type="button" (click)="onCancel()" [ngClass]="{dark7: darkMode}">Cancel</button>
               </div>
             </form>
           </div>
           <div class="likes-part">
-            <span class="material-symbols-outlined like-button" 
+            <span *ngIf="!darkMode"
+              class="material-symbols-outlined like-button" 
               [ngClass]="{active: isUserLiked(post.likesArray)}" 
-              (click)="likeButton(post.likes, post.id, post.content, post.creatorName, post.postDate, post.editDate, post.imagePath, post.likesArray )">thumb_up</span>
+              (click)="likeButton(post.likes, post.id, post.content, post.creatorName, post.postDate, post.editDate, post.imagePath, post.likesArray )"
+              >thumb_up</span>
+              <span *ngIf="darkMode"
+              class="material-symbols-outlined like-button2" 
+              [ngClass]="{active: isUserLiked(post.likesArray)}" 
+              (click)="likeButton(post.likes, post.id, post.content, post.creatorName, post.postDate, post.editDate, post.imagePath, post.likesArray )"
+              >thumb_up</span>
             <div 
               *ngIf="post.likes > 0" 
               class="likes-number"
               matTooltip="matTooltip"
               [matTooltip]="returnLikesList(post.likesArray)"
-              >
+              [ngClass]="{dark3: darkMode}">
               {{post.likes}}
             </div>
           </div>
         </mat-card-content>
       </mat-card>
-      <mat-accordion>
+      <mat-accordion [ngClass]="{dark3: darkMode}">
         <mat-expansion-panel [expanded]="post.panelOpenState" (opened)="post.panelOpenState = true"
-                             (closed)="post.panelOpenState = false">
+                             (closed)="post.panelOpenState = false" 
+                             [ngClass]="{dark2: darkMode}">
           <mat-expansion-panel-header>
-            <mat-panel-title>
+            <mat-panel-title [ngClass]="{dark3: darkMode}">
               {{post.panelOpenState ? 'Hide' : 'Show'}} Comments
             </mat-panel-title>
           </mat-expansion-panel-header>

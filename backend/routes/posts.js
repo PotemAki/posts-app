@@ -47,7 +47,8 @@ router.post('/api/posts', checkAuth, multer({storage: storage}).single('image'),
     likes: req.body.likes,
     creator: req.userData.userId,
     creatorImage: req.body.creatorImage,
-    likesArray: req.body.likesArray
+    likesArray: req.body.likesArray, 
+    group: req.body.group
   })
   post.save().then(createdPost => {
     res.status(201).json({

@@ -1,5 +1,5 @@
 <div class="container">
-<mat-card>
+<mat-card [ngClass]="{dark: darkMode}">
     <mat-card-title>User View</mat-card-title>
   <div class="content">
     <div class="image-part">
@@ -11,14 +11,15 @@
       <div class="details">
         <div>
           <mat-card-title>Email</mat-card-title>
-          <button class="details-element" mat-stroked-button>{{user.email}}</button>
+          <button class="details-element" mat-stroked-button [ngClass]="{dark2: darkMode}">{{user.email}}</button>
         </div>
         <div>
           <mat-card-title>Nickname</mat-card-title>
-          <button class="details-element" mat-stroked-button>{{user.displayName}}</button>
+          <button class="details-element" mat-stroked-button [ngClass]="{dark2: darkMode}">{{user.displayName}}</button>
         </div>
       </div>
     </div>
   </div>
+  <button class="back-button" [ngClass]="{dark2: darkMode}" mat-raised-button routerLink="/">Back</button>
 </mat-card>
 </div>

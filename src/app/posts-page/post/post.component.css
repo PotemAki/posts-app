@@ -1,16 +1,17 @@
 .post{
   padding-bottom: 5px;
-  width: 60%;
+  width: 90%;
   max-width: 800px;
   margin-bottom: 15px;
 }
 .container{ 
-  background-color: white;
+  background-color: rgb(252, 252, 252);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   padding-top: 40px;
+  min-height: 70vh;
 }
 
 mat-card{
@@ -160,12 +161,14 @@ input[type="file"] {
   display: flex;
   align-items: flex-end;
   margin-top: 10px;
+  cursor: pointer;
 }
 
 .likes-number{
   font-size: 19px;
   margin-left: 7px;
   color: #6b6b6b;
+  cursor: pointer;
 }
 .message-container {
   font-weight: bold;
@@ -185,6 +188,41 @@ input[type="file"] {
 }
 .content{
   min-height: 250px;
+}
+.dark{
+  background-color: rgb(43, 43, 43) !important;
+  color: white;
+}
+.dark2{
+  background-color: rgb(31, 31, 31);
+  box-shadow: 2px 1px 8px 0px rgba(0, 0, 0, 0.5) !important;
+}
+.dark3{
+  color: rgb(201, 201, 201);
+}
+.dark4{
+  background-color: rgb(31, 31, 31);
+  box-shadow: 2px 1px 8px 0px rgba(0, 0, 0, 0.5) !important;
+}
+.dark5{
+  background-color: rgb(43, 43, 43);
+  color: white;
+}
+.dark5:hover{
+  background-color: rgb(24, 24, 24);
+}
+::ng-deep .custom1 {
+  background: rgb(44, 44, 44);
+}
+::ng-deep .custom2 {
+  background-color: rgb(255, 255, 255);
+}
+.dark6{
+  color: black;
+}
+.dark7{
+  background-color: rgb(59, 59, 59);
+  color: rgb(233, 233, 233);
 }
 
 @media (max-width: 850px) {

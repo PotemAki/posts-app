@@ -1,52 +1,94 @@
-<mat-drawer-container class="container" autosize >
-  <mat-drawer #drawer class="sidenav" mode="over" >
+<mat-drawer-container class="container" autosize [ngClass]="{dark: darkMode}">
+  <mat-drawer #drawer class="sidenav" mode="over" [ngClass]="{dark2: darkMode}">
+    <div class="mode-selection-sidebar">
+      <span class="material-symbols-outlined" *ngIf="!darkMode" (click)="changeView()">dark_mode</span>
+      <span class="material-symbols-outlined" *ngIf="darkMode" (click)="changeView()">light_mode</span>
+    </div>
     <div class="inside-sidenav">
-      <p>Check your options!</p>
-      <div>
-        <div class="sidenav-buttons" *ngIf="showFiller">
-          <button class="nav-button" mat-raised-button routerLink="/">Home</button>
-          <button *ngIf="!user" class="nav-button" mat-raised-button (click)="toLogin()">Login</button>
-          <button *ngIf="user" class="nav-button" mat-raised-button (click)="toSettings()">Settings</button>
-          <button *ngIf="user" class="nav-button" mat-raised-button (click)="toLogout()">Logout</button>
+        <div class="sidenav-buttons">
+          <button 
+          class="nav-button-sidebar" 
+          mat-raised-button routerLink="/"
+          [ngClass]="{dark3: darkMode}">Home</button>
+          <button *ngIf="!user" 
+          class="nav-button-sidebar" 
+          mat-raised-button 
+          (click)="toLogin()" 
+          [ngClass]="{dark3: darkMode}">Login</button>
+          <button *ngIf="user" 
+          class="nav-button-sidebar" 
+          mat-raised-button 
+          (click)="toSettings()" 
+          [ngClass]="{dark3: darkMode}">Settings</button>
+          <button *ngIf="user" 
+          class="nav-button-sidebar" 
+          mat-raised-button (click)="toLogout()" 
+          [ngClass]="{dark3: darkMode}">Logout</button>
         </div>
-        <button (click)="showFiller = !showFiller" mat-raised-button>
-          Toggle
-        </button>
+    </div>
+    <div class="inside-sidenav2">
+      <hr>
+      <div class="sidebar-segment">
+        <div class="heading-part">
+          <h1 class="heading">Groups
+          </h1>
+        </div>
+        <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="selection">
+          <mat-chip-option [selected]="isGroup === 'main'" (click)="toMain()">Main Page</mat-chip-option>
+          <mat-chip-option [selected]="isGroup === 'group1'" (click)="toGroup1()">Cosmos Group</mat-chip-option>
+          <mat-chip-option [selected]="isGroup === 'group2'" (click)="toGroup2()">Dog Memes</mat-chip-option>
+          <mat-chip-option [selected]="isGroup === 'group3'" (click)="toGroup3()">Beautiful Views</mat-chip-option>
+        </mat-chip-listbox>
       </div>
     </div>
-    <hr>
-    <p>Members:</p>
-    <div *ngFor="let user of allUsers">
-      <div class="member-list">
-        <div class="member-name" (click)="checkMember(user._id)">{{ user.displayName }}</div>
-        <div class="status-dot" [ngClass]="{ 'active': isUserActive(user._id) }"></div>
+    <div class="inside-sidenav2">
+      <hr>
+      <div class="heading-part">
+        <h1 class="heading">Members
+        </h1>
       </div>
+      <div *ngFor="let user of allUsers"  (click)="checkMember(user._id)">
+        <div class="member-list">
+          <div class="member-name">{{ user.displayName }}</div>
+          <div class="status-dot" [ngClass]="{ 'active': isUserActive(user._id) }"></div>
+        </div>
+      </div>
+    </div>
+    <div class="info">
+      <button mat-raised-button class="info-button" (click)="openInfo()" 
+      [ngClass]="{dark3: darkMode}">What to do here?
+        <div>
+          <span class="material-symbols-outlined" style="margin-top: 10px;">
+            info</span>
+        </div>
+      </button>
     </div>
   </mat-drawer>  
   <mat-toolbar class="header-content" color="primary">
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span class="my-app" routerLink="/">My App</span>
+    <span class="my-app" routerLink="/">MyBook</span>
     <span class="spacer"></span>
-
+    <div class="mode-selection">
+      <span class="material-symbols-outlined" *ngIf="!darkMode" (click)="changeView()">dark_mode</span>
+      <span class="material-symbols-outlined" *ngIf="darkMode" (click)="changeView()">light_mode</span>
+    </div>
+  
     <button *ngIf="!user" mat-icon-button (click)="toLogin()">
       <mat-icon>account_circle</mat-icon>
     </button>
     <button *ngIf="!user" class="nav-button" mat-button (click)="toLogin()">Login</button>
-
     <button class="pfp-button" *ngIf="user" mat-icon-button (click)="toSettings()">
       <img class="pfp" [src]="user.imagePath? user.imagePath : defaultPhoto">
     </button>
-    
     <div class="right-header" *ngIf="user">
       <button class="nav-button" mat-button [matMenuTriggerFor]="menu" >{{user.displayName}}</button>
-      <mat-menu #menu="matMenu">
-        <button class="nav-button" mat-menu-item (click)="toSettings()">Settings</button>
-        <button class="nav-button" mat-menu-item (click)="toLogout()">Logout</button>
+      <mat-menu #menu="matMenu" [class]="custom()">
+        <button class="nav-button" mat-menu-item (click)="toSettings()" [ngClass]="{dark4: darkMode}">Settings</button>
+        <button class="nav-button" mat-menu-item (click)="toLogout()" [ngClass]="{dark4: darkMode}">Logout</button>
       </mat-menu>
     </div>
-    
   </mat-toolbar>
   <!-- rest of the page -->
   <div class="page">

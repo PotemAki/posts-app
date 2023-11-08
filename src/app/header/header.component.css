@@ -14,9 +14,14 @@ mat-drawer-container {
 .inside-sidenav{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 20px;
+  padding: 10px;
+}
+.inside-sidenav2{
+  padding: 10px;
+  max-height: 500px;
+  overflow: auto;
 }
 .header-content{
   position: fixed;
@@ -27,6 +32,9 @@ mat-drawer-container {
 }
 .nav-button{
   font-size: 16px;
+}
+.nav-button-sidebar{
+  width: 100%;
 }
 .nav-button:hover {
   opacity: 0.9;
@@ -50,21 +58,91 @@ mat-drawer-container {
   display: flex;
   justify-content: space-between;
   padding: 5px 20px;
+  cursor: pointer;
+}
+.member-list:hover{
+  background-color: rgb(238, 238, 238);
+  border-radius: 5px;
+}
+.member-list:active{
+  background-color: rgb(218, 218, 218);
 }
 .member-name{
-  cursor: pointer;
   font-weight: bold;
 }
 .sidenav-buttons{
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 .sidenav-buttons button{
   margin-bottom: 5px;
 }
 .page{
   margin-top: 60px;
+}
+.heading-part {
+  margin-bottom: 10px;
+}
+.heading-part h1 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-family: "Raleway", sans-serif;
+}
+.dark{
+  background-color: rgb(31, 31, 31);
+}
+.dark2{
+  background-color: rgb(31, 31, 31);
+  color: white;
+}
+.dark3{
+  background-color: rgb(80, 80, 80) !important;
+  color: rgb(233, 233, 233) !important;
+}
+.dark4{
+  background-color: rgb(43, 43, 43);
+  color: white;
+}
+::ng-deep .custom1 {
+  background: rgb(44, 44, 44);
+}
+::ng-deep .custom2 {
+  background-color: rgb(255, 255, 255);
+}
+.mode-selection{
+  display: flex;
+  margin-right: 20px;
+}
+.mode-selection-sidebar{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.material-symbols-outlined{
+  cursor: pointer;
+  font-size: 26px;
+}
+.material-symbols-outlined:hover{
+  opacity: 0.7;
+}
+.material-symbols-outlined:active{
+  color: black;
+}
+.info{
+  margin-top: 70px;
+}
+.info-button{
+  width: 50%;
+  height: 100px;
+  padding-top: 10px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (max-width: 650px) { 

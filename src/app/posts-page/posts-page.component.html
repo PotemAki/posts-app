@@ -1,2 +1,12 @@
-<app-input></app-input>
-<app-post></app-post>
+<div class="container" [ngClass]="{dark: darkMode}">
+  <div class="left-page">
+    <app-side-part></app-side-part>
+  </div>
+  <div class="middle-page">
+    <app-input></app-input>
+    <app-post></app-post>
+  </div>
+  <div class="right-page">
+    <app-adds></app-adds>
+  </div>
+</div>

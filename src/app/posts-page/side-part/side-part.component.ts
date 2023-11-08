@@ -1,56 +1,43 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from '../login-page/auth.service';
+import { PostsService } from '../posts.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/login-page/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostsService } from '../posts-page/posts.service';
-import { DialogService } from '../posts-page/dialog.service';
+
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-side-part',
+  templateUrl: './side-part.component.html',
+  styleUrls: ['./side-part.component.css']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-  showFiller = false;
-  user: any;
-  allUsers: any;
+export class SidePartComponent implements OnInit, OnDestroy {
   isGroup = 'main'
   private isGroupSub: Subscription
-  private authSub: Subscription;
+  allUsers: any;
+  user: any;
+  private authSub: Subscription
   private userSub: Subscription;
-  defaultPhoto = 'assets/pfp.png'
-  darkMode = true
+  darkMode = false
   private isDarkModeSub: Subscription
 
-  constructor (private authService: AuthService, public postsService: PostsService, private router: Router, private route: ActivatedRoute, public dialogService: DialogService) { }
+  constructor(public postsService: PostsService, public authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.user = this.authService.getIsAuth();
     this.authSub = this.authService.user.subscribe(
       isAuth => {
         this.user = isAuth
       }
     )
-    this.authService.getUsers()
     this.userSub = this.authService.allUsers.subscribe((users) => {
       this.allUsers = users
-    }
-    )
+    })
     this.isGroupSub = this.postsService.groupActive.subscribe((res) =>{
       this.isGroup = res
     })
     this.isDarkModeSub = this.postsService.darkMode.subscribe((res) =>{
       this.darkMode = res
     })
-  }
-  toLogin() {
-    this.router.navigate(['/login'])
-  }
-  toLogout() {
-    this.authService.logout()
-  }
-  toSettings() {
-    this.router.navigate(['/settings'])
   }
   isUserActive(id: string) {
     if (!this.user) {
@@ -82,32 +69,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isGroup = 'group3'
     this.postsService.groupActive.next('group3')
   }
-  custom() {
-    if (!this.darkMode) {
-      return 'custom2'
-    }
-    if (this.darkMode) {
-      return 'custom1'
-    }
-  }
-  changeView() {
-    if (this.darkMode) {
-      this.postsService.darkMode.next(false)
-      localStorage.removeItem('darkMode')
-      localStorage.setItem('darkMode', 'false')
-    } else {
-      this.postsService.darkMode.next(true)
-      localStorage.removeItem('darkMode')
-      localStorage.setItem('darkMode', 'true')
-    }
-  }
-  openInfo() {
-    this.dialogService.openDialog({});
-  }
-  ngOnDestroy() {
+
+  ngOnDestroy(): void {
+    this.isGroupSub.unsubscribe()
     this.authSub.unsubscribe()
     this.userSub.unsubscribe()
-    this.isGroupSub.unsubscribe()
     this.isDarkModeSub.unsubscribe()
   }
 }

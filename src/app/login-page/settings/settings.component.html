@@ -2,7 +2,7 @@
   <div class="message-container" *ngIf="message">
     <span class="message">{{message}}</span>
   </div>
-<mat-card>
+<mat-card [ngClass]="{dark: darkMode}">
     <mat-card-title>Account Settings</mat-card-title>
   <div class="content">
     <div class="image-part">
@@ -11,17 +11,17 @@
       </div>
       <div class="buttons"> 
         <div>
-          <button [disabled]="!selectedOption" type="button" class="image-button" mat-raised-button (click)="filePicker.click()">Add Image</button>
-          <button [disabled]="!selectedOption" type="button" class="image-button" mat-raised-button (click)="resetProfilePic()">Default image</button>
+          <button [disabled]="!selectedOption" type="button" class="image-button" mat-raised-button (click)="filePicker.click()" [ngClass]="{dark2: darkMode}">Add Image</button>
+          <button [disabled]="!selectedOption" type="button" class="image-button" mat-raised-button (click)="resetProfilePic()" [ngClass]="{dark2: darkMode}">Default image</button>
           <input 
           type="file" 
           #filePicker 
           (change)="onImagePicked($event)">
         </div>
         <!-- <button class="delete-acc" mat-raised-button color="warn" (click)="deleteAccount()">Delete Account</button> -->
-        <ng-container *ngIf="showConfirmationDialog">
-          <div class="confirmation-dialog">
-            <div class="dialog-content">
+        <ng-container *ngIf="showConfirmationDialog" >
+          <div class="confirmation-dialog" >
+            <div class="dialog-content" [ngClass]="{dark3: darkMode}">
               <p>Are you sure you want to delete your account?</p>
               <div class="dialog-actions">
                 <button mat-raised-button color="primary" (click)="cancelDelete()">Cancel</button>
@@ -93,5 +93,6 @@
       </form>
     </mat-card-content>
   </div>
+  <button class="back-button" mat-raised-button routerLink="/" [ngClass]="{dark2: darkMode}">Back</button>
 </mat-card>
 </div>

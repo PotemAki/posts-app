@@ -81,3 +81,19 @@ mat-card-title {
   margin: 0 5px;
   margin-bottom: -20px;
 }
+.dark{
+  background-color: rgb(43, 43, 43);
+  color: white;
+}
+.dark2{
+  background-color: rgb(31, 31, 31);
+}
+.dark3{
+  color: white;
+}
+::ng-deep .custom1 {
+  background: rgb(44, 44, 44);
+}
+::ng-deep .custom2 {
+  background-color: rgb(255, 255, 255);
+}

@@ -1,0 +1,34 @@
+<div class="dialog-content" [ngClass]="{dark: darkMode}">
+  <h2 mat-dialog-title [ngClass]="{dark2: darkMode}">Website Info</h2>
+  <mat-dialog-content [ngClass]="{dark2: darkMode}">
+    <p class="skill-tit" [ngClass]="{dark2: darkMode}">Account</p>
+    <p class="skill-pst" [ngClass]="{dark3: darkMode}">
+      You can create an account and log in. Server takes password and bcrypt it so its safe to store. You can then add posts, edit (only your) posts. Additionally you can change your account settings inside website; password, nickname and profile picture.
+    </p>
+    <p class="skill-pst" [ngClass]="{dark3: darkMode}">
+      If you dont want to create new account, you can use existing one: login: michal@gmail.com, password: testtest.
+    </p>
+    <p class="skill-tit" [ngClass]="{dark2: darkMode}">Posts</p>
+    <p class="skill-pst" [ngClass]="{dark3: darkMode}">
+      You can add posts in main channel or choose one of four groups. You can edit and delete your posts, you can thumb up posts and comment them.
+    </p>
+    <p class="skill-tit" [ngClass]="{dark2: darkMode}">Night Mode</p>
+    <p class="skill-pst" [ngClass]="{dark3: darkMode}">
+      You can swtich to night or day mode.
+        <span class="material-symbols-outlined">dark_mode</span>
+        <span class="material-symbols-outlined">light_mode</span>
+    </p>
+    <p class="skill-tit" [ngClass]="{dark2: darkMode}">Ads</p>
+    <p class="skill-pst" [ngClass]="{dark3: darkMode}">
+      We get randomized ads section on the right (only on bigger screens)
+    </p>
+    <p class="skill-tit" [ngClass]="{dark2: darkMode}">Tech</p>
+    <p class="skill-pst" [ngClass]="{dark3: darkMode}">
+      App connets through NodeJS using Express to database - MongoDB, where it stores all users and posts and comments.
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions class="custom-dialog-actions">
+    <button mat-raised-button (click)="closeDialog()" [ngClass]="{dark4: darkMode}">Close</button>
+  </mat-dialog-actions>
+</div>
+

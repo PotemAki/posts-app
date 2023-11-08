@@ -3,13 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 30px;
-  background-color: white;
-  height: 100%;
-  
+  background-color: rgb(252, 252, 252);
 }
 .full-width{
-  width: 60%;
+  width: 90%;
   max-width: 800px;
 }
 .post-button{
@@ -19,7 +16,7 @@
 .button-group{
   display: flex;
   justify-content: flex-end;
-  width: 60%;
+  width: 90%;
   max-width: 800px;
 }
 input[type="file"] {
@@ -42,10 +39,70 @@ input[type="file"] {
 }
 .login-info{
   font-size: 20px;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 .textarea{
   max-height: 300px;
+}
+mat-card-title{
+  font-weight: bold;
+  font-size: 15px;
+}
+hr{
+  width: 90%;
+}
+.heading-group{
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+.heading{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.group-title{
+  font-weight: bold;
+  font-size: 24px;
+  color: #000000;
+}
+.group-desc{
+  font-size: 17px;
+  color:#646464; letter-spacing:-0.005em; word-spacing:1px;
+  letter-spacing: none;
+}
+.material-symbols-outlined{
+  margin-right: 10px;
+  font-size: 34px;
+  cursor: pointer;
+  padding: 10px;
+  transition: 0.2s;
+}
+.material-symbols-outlined:hover{
+  background-color: rgb(228, 228, 228);
+  border-radius: 5px;
+}
+.material-symbols-outlined:active{
+  background-color: rgb(207, 207, 207);
+}
+.dark{
+  background-color: rgb(43, 43, 43);
+  color: #000000;
+}
+.dark2{
+  background-color: rgb(80, 80, 80);
+  color: rgb(233, 233, 233);
+}
+.dark3{
+  background-color: rgb(33, 33, 33);
+  color: rgb(255, 255, 255)
+}
+.dark4{
+  color: rgb(199, 199, 199)
 }
 
 @media (max-width: 850px) {

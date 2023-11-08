@@ -1,0 +1,30 @@
+.custom-dialog-container {
+  width: 80%;
+}
+.skill-tit{
+  color: rgb(61, 61, 61);
+  font-weight: bold;
+}
+.custom-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.dark{
+  background-color: rgb(31, 31, 31);
+  color: white;
+}
+.dark2{
+  color: white !important;
+}
+.dark3{
+  color: rgb(173, 173, 173);
+}
+.dark4{
+  background-color: rgb(49, 49, 49);
+  color: rgb(233, 233, 233);
+}
+.material-symbols-outlined{
+  font-size: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}

@@ -17,6 +17,8 @@ export class AllUsersComponent implements OnInit, OnDestroy {
   user = { email: 'User Deleted', displayName: 'User Deleted'};
   private userId: string;
   private userSub: Subscription
+  darkMode = true
+  private isDarkModeSub: Subscription
 
   constructor(public postsService: PostsService, private router: Router, private route: ActivatedRoute, public authService: AuthService) { }
  
@@ -30,7 +32,11 @@ export class AllUsersComponent implements OnInit, OnDestroy {
           this.getUser(this.userId)
         })
         }
-      })}
+      })
+    this.isDarkModeSub = this.postsService.darkMode.subscribe((res) =>{
+      this.darkMode = res
+    })
+    }
 
   private getUser(id: string) {
     if (!this.allUsers) {
@@ -49,6 +55,6 @@ export class AllUsersComponent implements OnInit, OnDestroy {
       
   ngOnDestroy(): void {
     this.userSub.unsubscribe()
+    this.isDarkModeSub.unsubscribe()
   }
-  
   }

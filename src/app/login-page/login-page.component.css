@@ -31,7 +31,6 @@ form {
   margin-top: 15px;
 
 }
-
 .login-content {
   width: 90%;
   max-width: 450px;
@@ -51,4 +50,23 @@ form {
 }
 .button-color{
   background-color: rgb(240, 240, 240);
+}
+.dark{
+  background-color: rgb(43, 43, 43);
+  color: white;
+  box-shadow: 2px 1px 8px 0px rgba(0, 0, 0, 0.5) !important;
+}
+.dark2{
+  background-color: rgb(58, 58, 58);
+  color: white;
+}
+.dark2:disabled{
+  background-color: rgb(49, 49, 49);
+  color: rgb(0, 0, 0);;
+}
+.dark3{
+  color: rgb(0, 0, 0);
+}
+.dark4{
+  color: white
 }

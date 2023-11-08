@@ -12,8 +12,23 @@ const BACKEDN_URL = environment.apiUrl + '/posts/'
 export class PostsService { 
   private posts: Post[] = [];
   public postsUpdated = new BehaviorSubject<Post[]>([]);
+  public groupActive = new BehaviorSubject<string>('main');
+  public darkMode = new BehaviorSubject<boolean>(true);
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  autoDarkMode() {
+    const autoDarkMode = localStorage.getItem('darkMode')
+    if (!autoDarkMode) {
+      return
+    }
+    if (autoDarkMode === 'true') {
+      this.darkMode.next(true)
+    } else {
+      this.darkMode.next(false)
+    }
+    
+  }
 
   getPosts() {
     this.http.get<{message: string, posts: any}>(BACKEDN_URL)
@@ -32,7 +47,8 @@ export class PostsService {
             likes: post.likes,
             creator: post.creator,
             likesArray: likesArray,
-            creatorImage: post.creatorImage
+            creatorImage: post.creatorImage,
+            group: post.group
           }
         })
       }))
@@ -53,10 +69,11 @@ export class PostsService {
       imagePath?: string;
       likes: string;
       likesArray: string;
+      group: string;
     }>(BACKEDN_URL + postId);
   }
 
-  addPost(creatorName: string, content: string, image: File, creatorImage: string) {
+  addPost(creatorName: string, content: string, image: File, creatorImage: string, group: string) {
     const nowDate = new Date()
     const stringDate = nowDate.toString()
     const likes = '0';
@@ -65,9 +82,10 @@ export class PostsService {
     postData.append('creatorName', creatorName);
     postData.append('content', content);
     postData.append('postDate', stringDate);
-    postData.append('likes', likes)
-    postData.append('likesArray', JSON.stringify(likesArray))
-    postData.append('creatorImage', creatorImage)
+    postData.append('likes', likes);
+    postData.append('likesArray', JSON.stringify(likesArray));
+    postData.append('creatorImage', creatorImage);
+    postData.append('group', group)
     if (image) {
       postData.append('image', image, creatorName);
     }

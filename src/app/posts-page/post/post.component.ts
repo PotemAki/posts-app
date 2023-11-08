@@ -23,12 +23,18 @@ export class PostComponent implements OnInit, OnDestroy {
   imagePreview: string;
   private postId: string;
   posts: Post[] = [];
+  filteredPosts: any[];
   private postsSub: Subscription;
   isLiked = false;
   user: any;
   private authSub: Subscription
   allUsers: any;
   private userSub: Subscription;
+  isGroup = 'main'
+  private isGroupSub: Subscription
+  darkMode = false
+  private isDarkModeSub: Subscription
+
 
   constructor(public postsService: PostsService, private router: Router, private route: ActivatedRoute, public authService: AuthService) { }
  
@@ -46,6 +52,7 @@ export class PostComponent implements OnInit, OnDestroy {
     this.postsSub = this.postsService.postsUpdated
       .subscribe((posts: Post[]) => {
         this.posts = posts;
+        this.filterPostsByGroup()
       })
     
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -78,6 +85,14 @@ export class PostComponent implements OnInit, OnDestroy {
       this.allUsers = users
     }
     )
+    this.filterPostsByGroup()
+    this.isGroupSub = this.postsService.groupActive.subscribe((res) => {
+      this.isGroup = res
+      this.filterPostsByGroup()
+    })
+    this.isDarkModeSub = this.postsService.darkMode.subscribe((res) =>{
+      this.darkMode = res
+    })
   }
   isPostId(id:string) {
     if (this.postId === id ) {
@@ -246,10 +261,25 @@ export class PostComponent implements OnInit, OnDestroy {
     }
   }
 
+  filterPostsByGroup(){
+    this.filteredPosts = this.posts.filter(post => post.group === this.isGroup);
+  }
+
+  custom() {
+    if (!this.darkMode) {
+      return 'custom2'
+    }
+    if (this.darkMode) {
+      return 'custom1'
+    }
+  }
+
   ngOnDestroy() {
     this.postsSub.unsubscribe()
     this.authSub.unsubscribe()
     this.userSub.unsubscribe()
+    this.isGroupSub.unsubscribe()
+    this.isDarkModeSub.unsubscribe()
   }
   
 }

@@ -8,4 +8,5 @@ export interface Post {
   likes?: string;
   likeUpdate?: boolean;
   likesArray?: string | object
+  group?: string
 }

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { mimeType } from 'src/app/posts-page/mime-type.validator';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
+import { PostsService } from 'src/app/posts-page/posts.service';
 
 @Component({
   selector: 'app-settings',
@@ -19,8 +20,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
   showConfirmationDialog = false;
   isTimeOut: any;
   private authSub: Subscription
+  darkMode = false
+  private isDarkModeSub: Subscription 
 
-  constructor (private authService: AuthService) { }
+  constructor (private authService: AuthService, public postsService: PostsService) { }
 
   ngOnInit() {
     this.settingsForm = new FormGroup({
@@ -46,7 +49,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
         }
       }
     )
-
+    this.isDarkModeSub = this.postsService.darkMode.subscribe((res) =>{
+      this.darkMode = res
+    })
   }
 
   onImagePicked(event: Event) {
@@ -114,6 +119,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.authSub.unsubscribe()
+    this.isDarkModeSub.unsubscribe()
   }
 
 }

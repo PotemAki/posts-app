@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './login-page/auth.service';
+import { PostsService } from './posts-page/posts.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,10 @@ import { AuthService } from './login-page/auth.service';
 export class AppComponent implements OnInit {
   title = 'posts-app';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, public postsService: PostsService) { }
 
   ngOnInit() {
     this.authService.autoAuthUser();
+    this.postsService.autoDarkMode();
   }
 }

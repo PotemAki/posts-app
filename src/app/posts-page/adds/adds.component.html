@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="spinner" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="content" *ngIf="!isLoading" >
+    <div class="heading-part">
+      <h1 class="heading">Project Advertising
+      </h1>
+    </div>
+    <mat-card class="card" [ngClass]="{dark: darkMode}">
+      <mat-card-header>
+        <mat-card-title>{{title}}</mat-card-title>
+        <mat-card-subtitle [ngClass]="{dark3: darkMode}">{{subTitle}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="image">
+      <mat-card-content>
+        <p>{{desc}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a [href]="demo" target="_blank">
+          <button mat-button [ngClass]="{dark: darkMode}" >DEMO</button>
+        </a>
+        <a [href]="code" target="_blank">
+          <button mat-button [ngClass]="{dark: darkMode}" >CODE</button>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+    <div class="icon" (click)="refresh()">
+      <span class="material-symbols-outlined">
+        refresh
+        </span>
+    </div>
+  </div>
+  <div class="info">
+    <button mat-raised-button class="info-button" (click)="openInfo()" [ngClass]="{dark: darkMode}">What to do here?
+      <div>
+        <span class="material-symbols-outlined">
+          info</span>
+      </div>
+    </button>
+  </div>
+</div>

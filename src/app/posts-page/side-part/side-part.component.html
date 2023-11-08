@@ -1,0 +1,40 @@
+<div class="inside-sidebar">
+  <div class="sidebar-content">
+    <div class="sidebar-segment">
+      <hr>
+      <div class="heading-part">
+        <h1 class="heading">Groups
+        </h1>
+      </div>
+      <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="selection">
+        <mat-chip-option 
+        [selected]="isGroup === 'main'" 
+        (click)="toMain()">Main Page</mat-chip-option>
+        <mat-chip-option 
+        [selected]="isGroup === 'group1'" 
+        (click)="toGroup1()">Cosmos Group</mat-chip-option>
+        <mat-chip-option 
+        [selected]="isGroup === 'group2'" 
+        (click)="toGroup2()">Dog Memes</mat-chip-option>
+        <mat-chip-option 
+        [selected]="isGroup === 'group3'" 
+        (click)="toGroup3()">Beautiful Views</mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+    <hr>
+    <div class="sidebar-segment">
+      <div class="heading-part">
+        <h1 class="heading">Members
+        </h1>
+      </div>
+      <div *ngFor="let user of allUsers">
+        <div mat-button class="button-member" (click)="checkMember(user._id)" 
+        [ngClass]="{dark2: darkMode}"> 
+          <div class="member-name" >{{ user.displayName }}</div>
+          <div class="status-dot" [ngClass]="{ 'active': isUserActive(user._id) }"></div>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>

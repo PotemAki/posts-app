@@ -1,4 +1,4 @@
-<form class="form" *ngIf="user" [formGroup]="commentForm" >
+<form class="form" *ngIf="user" [formGroup]="commentForm">
   <div mat-card-avatar class="comment-avatar">
     <img class="pfp" [src]="getCreatorPhoto()">
   </div>
@@ -19,7 +19,6 @@
     </span>
   </div>
 </form>
-
 <form class="form" *ngIf="!user" [formGroup]="commentForm" >
   <div mat-card-avatar class="comment-avatar">
     <img>

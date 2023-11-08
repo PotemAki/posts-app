@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/login-page/auth.service';
+import { PostsService } from '../../posts.service';
 
 @Component({
   selector: 'app-comments',
@@ -22,9 +23,11 @@ export class CommentsComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
   private authSub: Subscription;
   private commentsSub: Subscription;
+  darkMode = false
+  private isDarkModeSub: Subscription
 
 
-  constructor(public commentService: CommentsService, private router: Router, private route: ActivatedRoute, public authService: AuthService) { }
+  constructor(public commentService: CommentsService, private router: Router, private route: ActivatedRoute, public authService: AuthService, public postsService: PostsService) { }
   
   ngOnInit() {
     this.editCommentForm = new FormGroup({
@@ -59,6 +62,9 @@ export class CommentsComponent implements OnInit, OnDestroy {
           })
         })
       }
+    })
+    this.isDarkModeSub = this.postsService.darkMode.subscribe((res) =>{
+      this.darkMode = res
     })
     }
 
@@ -146,10 +152,19 @@ export class CommentsComponent implements OnInit, OnDestroy {
       }
     }
   }
+  custom() {
+    if (!this.darkMode) {
+      return 'custom2'
+    }
+    if (this.darkMode) {
+      return 'custom1'
+    }
+  }
 
   ngOnDestroy() {
     this.commentsSub.unsubscribe()
     this.userSub.unsubscribe()
     this.authSub.unsubscribe()
+    this.isDarkModeSub.unsubscribe()
   }
 }

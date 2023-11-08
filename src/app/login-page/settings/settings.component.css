@@ -133,7 +133,27 @@ input[type="file"] {
   margin-right: 10px;
   width: 110px;
 }
-
+.back-button{
+  max-width: 150px;
+  margin-top: 10px;
+}
+.dark{
+  background-color: rgb(43, 43, 43);
+  color: white;
+  box-shadow: 2px 1px 8px 0px rgba(0, 0, 0, 0.5) !important;
+}
+.dark2{
+  background-color: rgb(58, 58, 58);
+  color: white;
+}
+.dark2:disabled{
+  background-color: rgb(49, 49, 49);
+  color: rgb(0, 0, 0);;
+}
+.dark3{
+  background-color: rgb(58, 58, 58) !important;
+  color: white;
+}
 @media (max-width: 860px) {
   .container{
     padding-top: 20px;

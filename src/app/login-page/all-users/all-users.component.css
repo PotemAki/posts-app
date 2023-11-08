@@ -1,6 +1,8 @@
 .container{
   height: 100%;
+  max-width: 1000px;
   padding: 50px;
+  margin: 0 auto;
 }
 .content{
   display: flex;
@@ -39,6 +41,19 @@ mat-card-title {
   width: 100%;
   margin-bottom: 10px;
   font-weight: bold;
+}
+.back-button{
+  max-width: 150px;
+}
+.dark{
+  background-color: rgb(43, 43, 43);
+  color: white;
+  box-shadow: 2px 1px 8px 0px rgba(0, 0, 0, 0.5) !important;
+}
+.dark2{
+  background-color: rgb(58, 58, 58);
+  color: white;
+  box-shadow: 2px 1px 8px 0px rgba(0, 0, 0, 0.5) !important;
 }
 
 @media (max-width: 600px) {
