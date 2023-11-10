@@ -1,12 +1,12 @@
 <div class="dialog-content" [ngClass]="{dark: darkMode}">
-  <h2 mat-dialog-title [ngClass]="{dark2: darkMode}">Website Info</h2>
+  <h2 mat-dialog-title [ngClass]="{dark2: darkMode}">Info</h2>
   <mat-dialog-content [ngClass]="{dark2: darkMode}">
     <p class="skill-tit" [ngClass]="{dark2: darkMode}">Account</p>
     <p class="skill-pst" [ngClass]="{dark3: darkMode}">
       You can create an account and log in. Server takes password and bcrypt it so its safe to store. You can then add posts, edit (only your) posts. Additionally you can change your account settings inside website; password, nickname and profile picture.
     </p>
     <p class="skill-pst" [ngClass]="{dark3: darkMode}">
-      If you dont want to create new account, you can use existing one: login: michal@gmail.com, password: testtest.
+      If you dont want to create new account, you can use existing one; login: michal&#64;gmail.com, password: testtest.
     </p>
     <p class="skill-tit" [ngClass]="{dark2: darkMode}">Posts</p>
     <p class="skill-pst" [ngClass]="{dark3: darkMode}">
@@ -31,4 +31,3 @@
     <button mat-raised-button (click)="closeDialog()" [ngClass]="{dark4: darkMode}">Close</button>
   </mat-dialog-actions>
 </div>
-

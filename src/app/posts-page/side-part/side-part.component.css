@@ -56,4 +56,9 @@
 .dark2:active{
   background-color: rgb(39, 39, 39);
 }
+@media (max-width: 1600px) {
+  .inside-sidebar{
+    width: 70%;
+  }
+}
 

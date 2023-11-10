@@ -4,13 +4,14 @@
   flex-direction: row;
   justify-content: center;
   background-color: white;
+  max-height: 95vh;
 }
 .left-page{
   display: flex;
   max-width: 350px;
 }
 .middle-page{
-  max-height: 95vh;
+  /* max-height: 95vh; */
   width: 100%;
   max-width: 800px;
   overflow-y: auto;
@@ -39,14 +40,16 @@
     display: none;
   }
 }
-@media (max-width: 1600px) {
-  .right-page{
-    margin-left: 0px;
-  }
-}
-@media (max-height: 800px) {
+/* @media (max-height: 900px) {
   .middle-page{
-    max-height: 90vh;
+   max-height: 90vh;
   }
-  
+} */
+@media (max-width: 1600px) {
+  .middle-page{
+    max-width: 700px;
+  }
+  .right-page{
+    margin-left: 30px;
+  }
 }

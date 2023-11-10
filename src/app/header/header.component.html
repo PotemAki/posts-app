@@ -48,7 +48,7 @@
         </h1>
       </div>
       <div *ngFor="let user of allUsers"  (click)="checkMember(user._id)">
-        <div class="member-list">
+        <div class="member-list" [ngClass]="{dark5: darkMode}">
           <div class="member-name">{{ user.displayName }}</div>
           <div class="status-dot" [ngClass]="{ 'active': isUserActive(user._id) }"></div>
         </div>
